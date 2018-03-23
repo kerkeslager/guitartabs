@@ -10,6 +10,8 @@
   {% endfor %}
 </ul>
 
+<p><a href="{% url 'tabs:create' %}">Create a tab</a></p>
+
 <ul>
   {% for tab in tabs %}
   <li><a href="{% url 'tabs:detail' tab.pk %}">{{ tab.name }}</a></li>
