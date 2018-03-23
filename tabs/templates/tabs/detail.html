@@ -11,6 +11,12 @@
     </a>
   </p>
   <p>
+    <strong>Artist:</strong>
+    {% if tab.artist %}
+    <a href="{% url 'tabs:artist' artist_id=tab.artist.pk %}">{{ tab.artist.name }}</a>
+    {% endif %}
+  </p>
+  <p>
     <strong>Added by:</strong>
     <a href="{% url 'users:profile' user_id=tab.user.pk %}">{{ tab.user.username }}</a>
   </p>

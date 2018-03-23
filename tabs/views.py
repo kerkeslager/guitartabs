@@ -7,8 +7,14 @@ from django.urls import reverse
 from . import forms, models
 
 def index(request):
+    instrument_choices = models.Tab.INSTRUMENT_CHOICES
     tabs = models.Tab.objects.order_by('-updated')
-    context = { 'tabs': tabs }
+
+    context = {
+        'instrument_choices': instrument_choices,
+        'tabs': tabs,
+    }
+
     return render(request, 'tabs/index.html', context)
 
 def instrument(request, instrument):
@@ -31,6 +37,24 @@ def instrument(request, instrument):
     }
 
     return render(request, 'tabs/index.html', context)
+
+def artist_detail(request, artist_id):
+    artist = get_object_or_404(models.Artist, pk=artist_id)
+
+    context = {
+        'artist': artist
+    }
+
+    return render(request, 'tabs/artist.html', context)
+
+def artist_index(request):
+    artists = models.Artist.objects.all()
+
+    context = {
+        'artists': artists,
+    }
+
+    return render(request, 'tabs/artist_index.html', context)
 
 def detail(request, tab_id):
     tab = get_object_or_404(models.Tab, pk=tab_id)

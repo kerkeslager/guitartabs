@@ -1,0 +1,8 @@
+{% extends 'tabs/base.html' %}
+
+{% block title %}{{ artist.name }}{% endblock %}
+
+{% block body %}
+  <h1>{{ artist.name }}</h1>
+  {% include "tabs/tab_list.html" with tabs=artist.tabs %}
+{% endblock %}

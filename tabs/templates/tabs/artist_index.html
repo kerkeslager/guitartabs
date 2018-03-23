@@ -1,0 +1,15 @@
+{% extends 'tabs/base.html' %}
+
+{% block title %}Artists{% endblock %}
+
+{% block body %}
+<h1>Artists</h1>
+
+<ul>
+  {% for artist in artists %}
+  <li>
+    <a href="{% url 'tabs:artist_detail' artist_id=artist.id %}">{{ artist.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
