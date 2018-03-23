@@ -1,0 +1,17 @@
+{% extends 'tabs/base.html' %}
+
+{% block title %}{{ user.username }}'s Profile{% endblock %}
+
+{% block body %}
+  <h1>{{ user.username }}'s Profile</h1>
+
+  <p><strong>First name:</strong> {{ user.first_name }}</p>
+  <p><strong>Last name:</strong> {{ user.last_name }}</p>
+
+  <h2>Tabs</h2>
+  <ul>
+    {% for tab in tabs %}
+    <li><a href="{% url 'tabs:detail' tab.pk %}">{{ tab.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
