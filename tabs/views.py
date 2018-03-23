@@ -15,6 +15,9 @@ def detail(request, tab_id):
     return render(request, 'tabs/detail.html', context)
 
 def create(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('users:login') + '?next=' + reverse('tabs:create'))
+
     if request.method == 'GET':
         tab_form = forms.TabForm()
         context = { 'tab_form': tab_form }
