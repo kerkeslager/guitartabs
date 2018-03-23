@@ -3,9 +3,13 @@
 {% block title %}Artists{% endblock %}
 
 {% block body %}
-<h2>Artists</h2>
+<header id='main-header'>
+  <h2>Artists</h2>
 
-<p><a href="{% url 'tabs:artist_create' %}">Create an artist</a></p>
+  <nav>
+    <span><a href="{% url 'tabs:artist_create' %}">Create an artist</a></span>
+  </nav>
+</header>
 
 <ul>
   {% for artist in artists %}

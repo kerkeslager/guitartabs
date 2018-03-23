@@ -3,11 +3,13 @@
 {% block title %}Create new tab{% endblock %}
 
 {% block body %}
-  <h2>Creating tab</h2>
+  <header id='main-header'>
+    <h2>Creating tab</h2>
+  </header>
 
   <form action="{% url 'tabs:create' %}" method='post'>
-    {% csrf_token %}
     {{ tab_form }}
+    {% csrf_token %}
     <input type='submit' value='Submit'/>
   </form>
 {% endblock %}

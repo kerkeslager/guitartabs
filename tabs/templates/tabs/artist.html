@@ -3,6 +3,13 @@
 {% block title %}{{ artist.name }}{% endblock %}
 
 {% block body %}
-  <h2>{{ artist.name }}</h2>
+  <header id='main-header'>
+    <h2>{{ artist.name }}</h2>
+  </header>
+
+  <section class='mapping'>
+  </section>
+
+  <h3>Tabs</h3>
   {% include "tabs/tab_list.html" with tabs=artist.tabs %}
 {% endblock %}

@@ -3,27 +3,33 @@
 {% block title %}{{ tab.name }}{% endblock %}
 
 {% block body %}
-  <h2>{{ tab.name }}</h2>
-  <p>
-    <strong>Instrument:</strong>
-    <a href="{% url 'tabs:instrument' instrument=tab.instrument %}">
+  <header id='main-header'>
+    <h2>{{ tab.name }}</h2>
+
+    {% if request.user.is_authenticated and request.user == tab.user %}
+    <nav>
+      <span><a href="{% url 'tabs:edit' tab_id=tab.pk %}">Edit</a></span>
+    </nav>
+    {% endif %}
+  </header>
+
+  <section class='mapping'>
+    <label for='instrument-link'>Instrument:</label>
+    <a id='instrument-link' href="{% url 'tabs:instrument' instrument=tab.instrument %}">
       {{ tab.get_instrument_display }}
     </a>
-  </p>
-  <p>
-    <strong>Artist:</strong>
+
+    <label for='artist-link'>Artist:</label>
     {% if tab.artist %}
-    <a href="{% url 'tabs:artist_detail' artist_id=tab.artist.pk %}">{{ tab.artist.name }}</a>
+    <a id='artist-link' href="{% url 'tabs:artist_detail' artist_id=tab.artist.pk %}">
+      {{ tab.artist.name }}
+    </a>
     {% endif %}
-  </p>
-  <p>
-    <strong>Added by:</strong>
-    <a href="{% url 'users:profile' user_id=tab.user.pk %}">{{ tab.user.username }}</a>
-  </p>
 
-  {% if request.user.is_authenticated and request.user == tab.user %}
-  <p><a href="{% url 'tabs:edit' tab_id=tab.pk %}">Edit</a></p>
-  {% endif %}
+    <label for='user-link'>Added by:</label>
+    <a id='user-link' href="{% url 'users:profile' user_id=tab.user.pk %}">{{ tab.user.username }}</a>
+  </section>
 
-  <p class='tabulature-body'>{{ tab.body }}</p>
+
+  <section class='tab-body'>{{ tab.body }}</section>
 {% endblock %}

@@ -15,7 +15,7 @@ header#site-header {
   border-style: solid;
   border-color: black;
   padding: 0 1vw;
-  margin: 0 0 2vw 0;
+  margin: 0 0 15px 0;
 }
 
 header#site-header h1 a {
@@ -26,21 +26,48 @@ header#site-header h1 a:visited {
   color: black;
 }
 
+main {
+  margin: 0 1vw;
+}
+
+header#main-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+header#main-header h2 {
+  margin: 10px 1.5vw 10px 0;
+}
+
+nav {
+  margin: 0 0 0 0;
+}
+
 nav span:not(:last-child)::after {
   content: '  /  ';
 }
 
+section.mapping,
 form {
   display: flex;
   flex-direction: column;
+  margin: 0;
 }
 
+section.mapping label,
 form label {
-  margin: 1vh 0 0 0;
+  font-weight: bold;
+}
+
+section.mapping label:not(:first-child),
+form label:not(:first-child) {
+  margin: 15px 0 0 0;
 }
 
 input[type=text] {
   width: 30em;
+  height: 25px;
 }
 
 select {
@@ -49,6 +76,23 @@ select {
 }
 
 input[type=submit] {
-  margin: 1vw 0 0 0;
+  margin: 15px 0 0 0;
   width: 8em;
+}
+
+section.tab-body {
+  margin-top: 15px;
+}
+
+footer#site-footer {
+  display: flex;
+  flex-direction: row;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  border-color: black;
+  padding: 15px 1vw;
+  margin: 0 0 0 0;
 }

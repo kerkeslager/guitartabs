@@ -55,9 +55,12 @@
       </nav>
     </header>
 
+    <main>
     {% block body %}{% endblock %}
+    </main>
 
     <footer id='site-footer'>
+      &copy; {% now 'Y' %} David Kerkeslager
     </footer>
   </body>
 </html>

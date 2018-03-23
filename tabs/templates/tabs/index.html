@@ -3,6 +3,13 @@
 {% block title %}Tabs{% endblock %}
 
 {% block body %}
-  <h2>Latest Tabs</h2>
+  <header id='main-header'>
+    <h2>Tabs</h2>
+
+    <nav>
+      <span><a href="{% url 'tabs:create' %}">Create a tab</a></span>
+    </nav>
+  </header>
+
   {% include "tabs/tab_list.html" with tabs=tabs instrument_choices=instrument_choices instrument=instrument %}
 {% endblock %}

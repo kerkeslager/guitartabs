@@ -10,10 +10,12 @@
   {% endfor %}
 </nav>
 
-<p><a href="{% url 'tabs:create' %}">Create a tab</a></p>
-
+{% if tabs.all %}
 <ul>
   {% for tab in tabs %}
   <li><a href="{% url 'tabs:detail' tab.pk %}">{{ tab.name }}</a></li>
   {% endfor %}
 </ul>
+{% else %}
+<p>There are no tabs to display.</p>
+{% endif %}

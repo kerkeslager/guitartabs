@@ -3,11 +3,18 @@
 {% block title %}{{ user.username }}'s Profile{% endblock %}
 
 {% block body %}
-  <h2>{{ user.username }}'s Profile</h2>
+  <header id='main-header'>
+    <h2>{{ user.username }}'s Profile</h2>
+  </header>
 
-  <p><strong>First name:</strong> {{ user.first_name }}</p>
-  <p><strong>Last name:</strong> {{ user.last_name }}</p>
+  <section class='mapping'>
+    <label for='first-name'>First name:</label>
+    <span id='first-name'>{{ user.first_name }}</span>
 
-  <h2>Latest Tabs</h2>
+    <label for='last-name'>Last name:</label>
+    <span id='last-name'>{{ user.last_name }}</span>
+  </section>
+
+  <h3>Tabs</h3>
   {% include "tabs/tab_list.html" with tabs=tabs %}
 {% endblock %}
