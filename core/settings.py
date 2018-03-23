@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 INSTALLED_APPS = [
+    'core',
     'tabs.apps.TabsConfig',
     'users.apps.UsersConfig',
 
