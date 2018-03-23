@@ -4,7 +4,10 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 
 def index(request):
-    return render(request, 'core/home.html')
+    context = {
+        'page': 'home',
+    }
+    return render(request, 'core/home.html', context)
 
 def register(request):
     if request.method == 'POST':

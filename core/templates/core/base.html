@@ -12,18 +12,52 @@
   </head>
 
   <body>
-    <nav>
-      <span><a href="{% url 'tabs:index' %}">Tabs</a></span>
-      <span><a href="{% url 'tabs:artist_index' %}">Artists</a></span>
-      {% if request.user.is_authenticated %}
-      <span>Welcome, <a href="{% url 'users:profile' user_id=request.user.pk %}">{{ request.user.username }}</a></span>
-      <span><a href="{% url 'logout' %}">Log out</a></span>
-      {% else %}
-      <span><a href="{% url 'register' %}">Register</a></span>
-      <span><a href="{% url 'login' %}">Log in</a></span>
-      {% endif %}
-    </nav>
+    <header id='site-header'>
+      <h1>
+        {% if page == 'home' %}
+        guitab
+        {% else %}
+        <a href="{% url 'index' %}">guitab</a>
+        {% endif %}
+      </h1>
+      <nav>
+        <span>
+          {% if page == 'home' %}
+          Home
+          {% else %}
+          <a href="{% url 'index' %}">Home</a>
+          {% endif %}
+        </span>
+
+        <span>
+          {% if page == 'tab_index' %}
+          Tabs
+          {% else %}
+          <a href="{% url 'tabs:index' %}">Tabs</a>
+          {% endif %}
+        </span>
+
+        <span>
+          {% if page == 'artist_index' %}
+          Artists
+          {% else %}
+          <a href="{% url 'tabs:artist_index' %}">Artists</a>
+          {% endif %}
+        </span>
+
+        {% if request.user.is_authenticated %}
+        <span>Welcome, <a href="{% url 'users:profile' user_id=request.user.pk %}">{{ request.user.username }}</a></span>
+        <span><a href="{% url 'logout' %}">Log out</a></span>
+        {% else %}
+        <span><a href="{% url 'register' %}">Register</a></span>
+        <span><a href="{% url 'login' %}">Log in</a></span>
+        {% endif %}
+      </nav>
+    </header>
 
     {% block body %}{% endblock %}
+
+    <footer id='site-footer'>
+    </footer>
   </body>
 </html>

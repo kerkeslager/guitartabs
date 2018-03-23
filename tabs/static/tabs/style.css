@@ -2,6 +2,29 @@ html {
   font-family: 'Roboto Mono', monospace;
 }
 
+body {
+  margin: 0 1vw;
+}
+
+header#site-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: black;
+  padding: 0 1vw;
+}
+
+header#site-header h1 a {
+  color: black;
+  text-decoration: none;
+}
+header#site-header h1 a:visited {
+  color: black;
+}
+
 nav span:not(:last-child)::after {
   content: '  /  ';
 }

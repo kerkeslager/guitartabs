@@ -13,6 +13,7 @@ def index(request):
 
     context = {
         'instrument_choices': instrument_choices,
+        'page': 'tab_index',
         'tabs': tabs,
     }
 
@@ -75,6 +76,7 @@ def artist_index(request):
 
     context = {
         'artists': artists,
+        'page': 'artist_index',
     }
 
     return render(request, 'tabs/artist_index.html', context)
