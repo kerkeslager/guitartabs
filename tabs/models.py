@@ -7,9 +7,16 @@ class Artist(models.Model):
     user = models.ForeignKey(User, on_delete=deletion.PROTECT)
     name = models.CharField(max_length=256, unique=True, null=False, blank=False)
 
+    class Meta:
+        verbose_name = 'Artist'
+        verbose_name_plural = 'Artists'
+
     @property
     def tabs(self):
         return Tab.objects.filter(artist=self).order_by('-created')
+
+    def __str__(self):
+        return self.name
 
 class Tab(models.Model):
     GUITAR = 'guitar'
@@ -37,3 +44,10 @@ class Tab(models.Model):
         default=GUITAR,
     )
     body = models.CharField(max_length=4096)
+
+    class Meta:
+        verbose_name = 'Tab'
+        verbose_name_plural = 'Tabs'
+
+    def __str__(self):
+        return self.name
