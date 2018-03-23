@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from . import models
+from . import forms, models
 
 def index(request):
     tabs = models.Tab.objects.order_by('-updated')
@@ -16,7 +16,8 @@ def detail(request, tab_id):
 
 def create(request):
     if request.method == 'GET':
-        context = {}
+        tab_form = forms.TabForm()
+        context = { 'tab_form': tab_form }
         return render(request, 'tabs/create.html', context)
 
     if request.method == 'POST':

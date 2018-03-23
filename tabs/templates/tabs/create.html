@@ -5,8 +5,7 @@
 {% block body %}
   <form action="{% url 'tabs:create' %}" method='post'>
     {% csrf_token %}
-    <label>Name</label><input name='name' type='text'/>
-    <label>Body</label><textarea name='body'></textarea>
+    {{ tab_form }}
     <input type='submit' value='Submit'/>
   </form>
 {% endblock %}
