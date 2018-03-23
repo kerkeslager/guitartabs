@@ -3,6 +3,6 @@
 {% block title %}{{ artist.name }}{% endblock %}
 
 {% block body %}
-  <h1>{{ artist.name }}</h1>
+  <h2>{{ artist.name }}</h2>
   {% include "tabs/tab_list.html" with tabs=artist.tabs %}
 {% endblock %}

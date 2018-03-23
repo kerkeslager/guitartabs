@@ -3,6 +3,8 @@
 {% block title %}Create new tab{% endblock %}
 
 {% block body %}
+  <h2>Creating artist</h2>
+
   <form action="{% url 'tabs:artist_create' %}" method='post'>
     {% csrf_token %}
     {{ artist_form }}

@@ -15,6 +15,7 @@ header#site-header {
   border-style: solid;
   border-color: black;
   padding: 0 1vw;
+  margin: 0 0 2vw 0;
 }
 
 header#site-header h1 a {
@@ -29,6 +30,25 @@ nav span:not(:last-child)::after {
   content: '  /  ';
 }
 
-.tabulature-body {
-  font-family: 'Roboto Mono', monospace;
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  margin: 1vh 0 0 0;
+}
+
+input[type=text] {
+  width: 30em;
+}
+
+select {
+  padding: 0;
+  width: 30.65em;
+}
+
+input[type=submit] {
+  margin: 1vw 0 0 0;
+  width: 8em;
 }
