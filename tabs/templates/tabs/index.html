@@ -3,9 +3,6 @@
 {% block title %}Tabs{% endblock %}
 
 {% block body %}
-  <ul>
-    {% for tab in tabs %}
-    <li><a href="{% url 'tabs:detail' tab.pk %}">{{ tab.name }}</a></li>
-    {% endfor %}
-  </ul>
+  <h1>Latest Tabs</h1>
+  {% include "tabs/tab_list.html" with tabs=tabs %}
 {% endblock %}
