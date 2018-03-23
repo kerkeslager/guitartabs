@@ -16,9 +16,9 @@
       <ul>
         {% if request.user.is_authenticated %}
         <li>Welcome, <a href="">{{ request.user.username }}</a></li>
-        <li><a href="">Sign out</a></li>
+        <li><a href="{% url 'users:logout' %}">Log out</a></li>
         {% else %}
-        <li><a href="">Register/Sign in</a></li>
+        <li><a href="{% url 'users:register' %}">Register</a> / <a href="{% url 'users:login' %}">Log in</a></li>
         {% endif %}
       </ul>
     </div>
