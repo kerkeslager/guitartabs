@@ -5,7 +5,6 @@ from django.shortcuts import get_object_or_404, redirect, render
 
 from tabs import models as tab_models
 
-
 def profile(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     tabs = tab_models.Tab.objects.filter(user=user)

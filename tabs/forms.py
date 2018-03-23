@@ -15,6 +15,7 @@ class TabForm(forms.ModelForm):
         model = models.Tab
         fields = (
             'name',
+            'instrument',
             'body',
         )
         widgets = {

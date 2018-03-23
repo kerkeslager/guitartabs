@@ -4,6 +4,7 @@
 
 {% block body %}
   <h1>{{ tab.name }}</h1>
+  <p><strong>Instrument:</strong> {{ tab.get_instrument_display }}</p>
   <p><strong>Added by:</strong> {{ tab.user.username }}</p>
 
   {% if request.user.is_authenticated and request.user == tab.user %}
