@@ -2,8 +2,8 @@ html {
   font-family: 'Roboto Mono', monospace;
 }
 
-.page-header ul {
-  list-style-type: none;
+nav span:not(:last-child)::after {
+  content: '  /  ';
 }
 
 .tabulature-body {
