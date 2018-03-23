@@ -6,6 +6,8 @@ from django.db.models import deletion
 class Artist(models.Model):
     user = models.ForeignKey(User, on_delete=deletion.PROTECT)
     name = models.CharField(max_length=256, unique=True, null=False, blank=False)
+    website = models.URLField(null=True, blank=True)
+    wikipedia = models.URLField(null=True, blank=True)
 
     class Meta:
         verbose_name = 'Artist'

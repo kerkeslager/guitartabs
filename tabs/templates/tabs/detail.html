@@ -27,7 +27,9 @@
     {% endif %}
 
     <label for='user-link'>Added by:</label>
-    <a id='user-link' href="{% url 'users:profile' user_id=tab.user.pk %}">{{ tab.user.username }}</a>
+    <a id='user-link' href="{% url 'users:profile' user_id=tab.user.pk %}">
+      {{ tab.user.username }}
+    </a>
   </section>
 
 

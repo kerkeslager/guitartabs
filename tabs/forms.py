@@ -8,6 +8,8 @@ class ArtistForm(forms.ModelForm):
         fields = (
             'name',
             'user',
+            'website',
+            'wikipedia',
         )
         widgets = {
             'body': forms.Textarea(attrs={'cols': 120, 'rows': 50}),
