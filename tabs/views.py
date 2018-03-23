@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from . import forms, models
+from core import util
 
 def index(request):
     instrument_choices = models.Tab.INSTRUMENT_CHOICES
@@ -37,6 +38,28 @@ def instrument(request, instrument):
     }
 
     return render(request, 'tabs/index.html', context)
+
+def artist_create(request):
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login') + '?next=' + reverse('tabs:artist_create'))
+
+    if request.method == 'GET':
+        artist_form = forms.ArtistForm()
+        context = { 'artist_form': artist_form }
+        return render(request, 'tabs/artist_create.html', context)
+
+    if request.method == 'POST':
+        artist_form = forms.ArtistForm({
+            **util.params_to_dict(request.POST),
+            **{ 'user': request.user.pk },
+        })
+
+        if artist_form.is_valid():
+            artist = artist_form.save()
+            return HttpResponseRedirect(reverse('tabs:artist_detail', args=(artist.pk,)))
+
+        context = { 'artist_form': artist_form }
+        return render(request, 'tabs/artist_create.html', context)
 
 def artist_detail(request, artist_id):
     artist = get_object_or_404(models.Artist, pk=artist_id)
@@ -71,14 +94,17 @@ def create(request):
         return render(request, 'tabs/create.html', context)
 
     if request.method == 'POST':
-        tab = models.Tab(
-            user=request.user,
-            name=request.POST['name'],
-            body=request.POST['body'],
-        )
-        tab.save()
+        tab_form = forms.TabForm({
+            **util.params_to_dict(request.POST),
+            **{ 'user': request.user.pk },
+        })
 
-        return HttpResponseRedirect(reverse('tabs:detail', args=(tab.pk,)))
+        if tab_form.is_valid():
+            tab = tab_form.save()
+            return HttpResponseRedirect(reverse('tabs:detail', args=(tab.pk,)))
+
+        context = { 'tab_form': tab_form }
+        return render(request, 'tabs/create.html', context)
 
 def edit(request, tab_id):
     tab = get_object_or_404(models.Tab, pk=tab_id)
@@ -96,11 +122,11 @@ def edit(request, tab_id):
         return render(request, 'tabs/create.html', context)
 
     if request.method == 'POST':
-        tab = models.Tab(
-            user=request.user,
-            name=request.POST['name'],
-            body=request.POST['body'],
-        )
-        tab.save()
+        tab_form = forms.TabForm({
+            **util.params_to_dict(request.POST),
+            **{ 'user': request.user.pk },
+        })
 
-        return HttpResponseRedirect(reverse('tabs:detail', args=(tab.pk,)))
+        if tab_form.is_valid():
+            tab = tab_form.save()
+            return HttpResponseRedirect(reverse('tabs:detail', args=(tab.pk,)))

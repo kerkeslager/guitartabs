@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import deletion
 
 class Artist(models.Model):
+    user = models.ForeignKey(User, on_delete=deletion.PROTECT)
     name = models.CharField(max_length=256, unique=True, null=False, blank=False)
 
     @property

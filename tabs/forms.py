@@ -2,6 +2,18 @@ from django import forms
 
 from . import models
 
+class ArtistForm(forms.ModelForm):
+    class Meta:
+        model = models.Artist
+        fields = (
+            'name',
+            'user',
+        )
+        widgets = {
+            'body': forms.Textarea(attrs={'cols': 120, 'rows': 50}),
+            'user': forms.HiddenInput(),
+        }
+
 class TabAdminForm(forms.ModelForm):
     class Meta:
         model = models.Tab
@@ -15,10 +27,12 @@ class TabForm(forms.ModelForm):
         model = models.Tab
         fields = (
             'name',
+            'user',
             'instrument',
             'artist',
             'body',
         )
         widgets = {
             'body': forms.Textarea(attrs={'cols': 120, 'rows': 50}),
+            'user': forms.HiddenInput(),
         }

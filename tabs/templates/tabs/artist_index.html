@@ -5,6 +5,8 @@
 {% block body %}
 <h1>Artists</h1>
 
+<p><a href="{% url 'tabs:artist_create' %}">Create an artist</a></p>
+
 <ul>
   {% for artist in artists %}
   <li>

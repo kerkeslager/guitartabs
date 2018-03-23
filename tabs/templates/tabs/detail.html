@@ -13,7 +13,7 @@
   <p>
     <strong>Artist:</strong>
     {% if tab.artist %}
-    <a href="{% url 'tabs:artist' artist_id=tab.artist.pk %}">{{ tab.artist.name }}</a>
+    <a href="{% url 'tabs:artist_detail' artist_id=tab.artist.pk %}">{{ tab.artist.name }}</a>
     {% endif %}
   </p>
   <p>
