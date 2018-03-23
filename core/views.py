@@ -3,6 +3,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 
+def index(request):
+    return render(request, 'core/home.html')
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

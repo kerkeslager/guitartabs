@@ -14,11 +14,14 @@
   <body>
     <div id='page-header'>
       <ul>
+        <li><a href="{% url 'tabs:index' %}">Tabs</a></li>
+        <li><a href="{% url 'tabs:artist_index' %}">Artists</a></li>
         {% if request.user.is_authenticated %}
         <li>Welcome, <a href="{% url 'users:profile' user_id=request.user.pk %}">{{ request.user.username }}</a></li>
         <li><a href="{% url 'logout' %}">Log out</a></li>
         {% else %}
-        <li><a href="{% url 'register' %}">Register</a> / <a href="{% url 'login' %}">Log in</a></li>
+        <li><a href="{% url 'register' %}">Register</a></li>
+        <li><a href="{% url 'login' %}">Log in</a></li>
         {% endif %}
       </ul>
     </div>
