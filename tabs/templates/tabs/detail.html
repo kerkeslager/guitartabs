@@ -4,5 +4,10 @@
 
 {% block body %}
   <h1>{{ tab.name }}</h1>
+
+  {% if request.user.is_authenticated and request.user == tab.user %}
+  <p><a href="{% url 'tabs:edit' tab_id=tab.pk %}">Edit</a></p>
+  {% endif %}
+
   <p class='tabulature-body'>{{ tab.body }}</p>
 {% endblock %}
