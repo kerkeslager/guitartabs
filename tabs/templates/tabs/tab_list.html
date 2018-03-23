@@ -1,3 +1,15 @@
+<ul class='instrument-choices-nav'>
+  {% for choice, human_readable_choice in instrument_choices %}
+  <li>
+    {% if choice == instrument %}
+    {{ human_readable_choice }}
+    {% else %}
+    <a href="{% url 'tabs:instrument' instrument=choice %}">{{ human_readable_choice }}</a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
 <ul>
   {% for tab in tabs %}
   <li><a href="{% url 'tabs:detail' tab.pk %}">{{ tab.name }}</a></li>

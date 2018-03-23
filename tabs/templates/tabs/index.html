@@ -4,5 +4,5 @@
 
 {% block body %}
   <h1>Latest Tabs</h1>
-  {% include "tabs/tab_list.html" with tabs=tabs %}
+  {% include "tabs/tab_list.html" with tabs=tabs instrument_choices=instrument_choices instrument=instrument %}
 {% endblock %}

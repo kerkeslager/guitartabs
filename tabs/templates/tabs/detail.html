@@ -4,8 +4,16 @@
 
 {% block body %}
   <h1>{{ tab.name }}</h1>
-  <p><strong>Instrument:</strong> {{ tab.get_instrument_display }}</p>
-  <p><strong>Added by:</strong> {{ tab.user.username }}</p>
+  <p>
+    <strong>Instrument:</strong>
+    <a href="{% url 'tabs:instrument' instrument=tab.instrument %}">
+      {{ tab.get_instrument_display }}
+    </a>
+  </p>
+  <p>
+    <strong>Added by:</strong>
+    <a href="{% url 'users:profile' user_id=tab.user.pk %}">{{ tab.user.username }}</a>
+  </p>
 
   {% if request.user.is_authenticated and request.user == tab.user %}
   <p><a href="{% url 'tabs:edit' tab_id=tab.pk %}">Edit</a></p>

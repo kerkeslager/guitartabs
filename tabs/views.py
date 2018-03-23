@@ -1,6 +1,6 @@
 from django.core.exceptions import PermissionDenied
 from django.forms.models import model_to_dict
-from django.http import HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
@@ -9,6 +9,27 @@ from . import forms, models
 def index(request):
     tabs = models.Tab.objects.order_by('-updated')
     context = { 'tabs': tabs }
+    return render(request, 'tabs/index.html', context)
+
+def instrument(request, instrument):
+    instrument_choices = models.Tab.INSTRUMENT_CHOICES
+
+    try:
+        instrument, human_readable_instrument = next(
+            (i, hri) for i, hri in instrument_choices if i == instrument
+        )
+    except StopIteration:
+        raise Http404
+
+    tabs = models.Tab.objects.filter(instrument=instrument).order_by('-updated')
+
+    context = {
+        'instrument': instrument,
+        'human_readable_instrument': human_readable_instrument,
+        'instrument_choices': instrument_choices,
+        'tabs': tabs,
+    }
+
     return render(request, 'tabs/index.html', context)
 
 def detail(request, tab_id):
