@@ -18,7 +18,7 @@ def detail(request, tab_id):
 
 def create(request):
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('users:login') + '?next=' + reverse('tabs:create'))
+        return HttpResponseRedirect(reverse('login') + '?next=' + reverse('tabs:create'))
 
     if request.method == 'GET':
         tab_form = forms.TabForm()
@@ -39,7 +39,7 @@ def edit(request, tab_id):
     tab = get_object_or_404(models.Tab, pk=tab_id)
 
     if not request.user.is_authenticated:
-        return HttpResponseRedirect(reverse('users:login') + '?next=' + reverse('tabs:edit', tab_id=tab.pk))
+        return HttpResponseRedirect(reverse('login') + '?next=' + reverse('tabs:edit', tab_id=tab.pk))
 
     if not request.user == tab.user:
         raise PermissionDenied
