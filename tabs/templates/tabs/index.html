@@ -1,0 +1,13 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+
+  <body>
+    <ul>
+      {% for tab in tabs %}
+      <li>{{ tab.pk }}. {{ tab.name }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
