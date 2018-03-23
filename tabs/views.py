@@ -25,6 +25,7 @@ def create(request):
 
     if request.method == 'POST':
         tab = models.Tab(
+            user=request.user,
             name=request.POST['name'],
             body=request.POST['body'],
         )

@@ -13,7 +13,10 @@ class TabAdminForm(forms.ModelForm):
 class TabForm(forms.ModelForm):
     class Meta:
         model = models.Tab
-        fields = '__all__'
+        fields = (
+            'name',
+            'body',
+        )
         widgets = {
             'body': forms.Textarea(attrs={'cols': 120, 'rows': 50}),
         }
