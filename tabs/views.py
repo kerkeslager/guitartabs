@@ -1,5 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
 from . import models
 
@@ -12,3 +13,17 @@ def detail(request, tab_id):
     tab = get_object_or_404(models.Tab, pk=tab_id)
     context = { 'tab': tab }
     return render(request, 'tabs/detail.html', context)
+
+def create(request):
+    if request.method == 'GET':
+        context = {}
+        return render(request, 'tabs/create.html', context)
+
+    if request.method == 'POST':
+        tab = models.Tab(
+            name=request.POST['name'],
+            body=request.POST['body'],
+        )
+        tab.save()
+
+        return HttpResponseRedirect(reverse('tabs:detail', args=(tab.pk,)))

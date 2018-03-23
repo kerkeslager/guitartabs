@@ -1,13 +1,11 @@
-<html>
-  <head>
-    <title></title>
-  </head>
+{% extends 'tabs/base.html' %}
 
-  <body>
-    <ul>
-      {% for tab in tabs %}
-      <li><a href="{% url 'detail' tab.pk %}">{{ tab.name }}</a></li>
-      {% endfor %}
-    </ul>
-  </body>
-</html>
+{% block title %}Tabs{% endblock %}
+
+{% block body %}
+  <ul>
+    {% for tab in tabs %}
+    <li><a href="{% url 'tabs:detail' tab.pk %}">{{ tab.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
