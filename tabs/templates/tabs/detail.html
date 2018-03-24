@@ -24,6 +24,8 @@
     <a id='artist-link' href="{% url 'tabs:artist_detail' artist_id=tab.artist.pk %}">
       {{ tab.artist.name }}
     </a>
+    {% else %}
+    <span id='artist-link'>(none)</span>
     {% endif %}
 
     <label for='user-link'>Added by:</label>

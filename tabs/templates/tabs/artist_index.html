@@ -11,11 +11,14 @@
   </nav>
 </header>
 
-<ul>
+<table>
+  <tbody>
   {% for artist in artists %}
-  <li>
-    <a href="{% url 'tabs:artist_detail' artist_id=artist.id %}">{{ artist.name }}</a>
-  </li>
+    <tr>
+      <td><a href="{% url 'tabs:artist_detail' artist_id=artist.id %}">{{ artist.name }}</a></td>
+      <td>({{ artist.tabs.count }} tabs)</td>
+    </tr>
   {% endfor %}
-</ul>
+  </tbody>
+</table>
 {% endblock %}

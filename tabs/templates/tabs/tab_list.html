@@ -11,11 +11,25 @@
 </nav>
 
 {% if tabs.all %}
-<ul>
-  {% for tab in tabs %}
-  <li><a href="{% url 'tabs:detail' tab.pk %}">{{ tab.name }}</a></li>
-  {% endfor %}
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Instrument</th>
+      <th>Artist</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for tab in tabs %}
+    <tr>
+      <td>{{ tab.instrument }}</td>
+      <td>{{ tab.artist.name }}</td>
+      <td><a href="{% url 'tabs:detail' tab.pk %}">{{ tab.name }}</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% else %}
 <p>There are no tabs to display.</p>
 {% endif %}

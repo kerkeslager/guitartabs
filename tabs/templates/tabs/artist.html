@@ -9,13 +9,21 @@
 
   <section class='mapping'>
     <label for='website-link'>Website:</label>
+    {% if artist.website %}
     <a id='website-link' href='{{ artist.website }}'>Link</a>
+    {% else %}
+    <span id='artist-link'>(none)</span>
+    {% endif %}
 
     <label for='wikipedia-link'>Wikipedia:</label>
+    {% if artist.wikipedia %}
     <a id='wikipedia-link' href='{{ artist.wikipedia }}'>Link</a>
+    {% else %}
+    <span id='artist-link'>(none)</span>
+    {% endif %}
 
     <label for='user-link'>Added by:</label>
-    <a id='user-link' href="{% url 'users:profile' user_id=tab.user.pk %}">
+    <a id='user-link' href="{% url 'users:profile' user_id=artist.user.pk %}">
       {{ tab.user.username }}
     </a>
   </section>
