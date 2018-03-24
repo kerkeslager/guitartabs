@@ -8,8 +8,8 @@
   </header>
 
   <form action="{% url 'tabs:artist_create' %}" method='post'>
-    {{ artist_form }}
     {% csrf_token %}
+    {{ artist_form }}
     <input type='submit' value='Submit'/>
   </form>
 {% endblock %}
