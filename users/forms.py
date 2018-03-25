@@ -13,6 +13,6 @@ class UserForm(forms.ModelForm):
 
 class ChangePasswordForm(forms.Form):
     current_password = forms.CharField(widget=forms.PasswordInput())
-    password = forms.CharField(widget=forms.PasswordInput())
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
+    new_password = forms.CharField(widget=forms.PasswordInput())
+    confirm_new_password = forms.CharField(widget=forms.PasswordInput())
 

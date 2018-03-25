@@ -8,6 +8,7 @@
     <nav>
       {% if request.user.is_authenticated and request.user == user %}
       <span><a href="{% url 'users:edit_profile' %}">Edit</a></span>
+      <span><a href="{% url 'users:change_password' %}">Change password</a></span>
       {% endif %}
     </nav>
   </header>
