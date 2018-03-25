@@ -5,9 +5,20 @@
 {% block body %}
   <header id='main-header'>
     <h2>{{ user.username }}'s Profile</h2>
+    <nav>
+      {% if request.user.is_authenticated and request.user == user %}
+      <span><a href="{% url 'users:edit_profile' %}">Edit</a></span>
+      {% endif %}
+    </nav>
   </header>
 
   <section class='mapping'>
+    {% if user == request.user %}
+    <label for='email'>Email:</label>
+    <span id='email'>{{ user.email }}</span>
+    <span>Your email is visible only to you</span>
+    {% endif %}
+
     <label for='first-name'>First name:</label>
     <span id='first-name'>{{ user.first_name }}</span>
 
