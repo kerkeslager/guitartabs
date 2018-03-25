@@ -70,6 +70,14 @@
           <a href="{% url 'contact:contact' %}">Contact</a>
           {% endif %}
         </span>
+        <span>
+          {% if page == 'privacy_policy' %}
+          Privacy Policy
+          {% else %}
+          <a href="{% url 'privacy_policy' %}">Privacy Policy</a>
+          {% endif %}
+        </span>
+      </nav>
     </footer>
   </body>
 </html>

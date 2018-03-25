@@ -4,9 +4,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, redirect, render
 
 def index(request):
-    context = {
-        'page': 'home',
-    }
+    context = { 'page': 'home' }
     return render(request, 'core/home.html', context)
 
 def register(request):
@@ -26,3 +24,7 @@ def register(request):
         form = UserCreationForm()
 
     return render(request, 'users/register.html', {'form': form})
+
+def privacy_policy(request):
+    context = { 'page': 'privacy_policy' }
+    return render(request, 'core/privacy_policy.html')

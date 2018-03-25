@@ -1,0 +1,74 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Privacy Policy{% endblock %}
+
+{% block body %}
+  <header id='main-header'>
+    <h2>Privacy Policy</h2>
+  </header>
+
+  <p>
+    My goal is to make guitab as ethical and human-friendly as possible. As
+    such I will do my best to make sure that your data only goes to people
+    you intend it to go to, and that I don't use your data for anything you
+    don't want me to.
+  </p>
+
+  <p>
+    The first and strongest defense of your data is that I don't collect much
+    of it in the first place. I don't track you on this site or any others,
+    and I don't include ads or trackers in our pages. I will never require
+    you to sign up to view the content of this site. I will never require more
+    than a username and password to sign up for the site and contribute
+    content. Providing your name or an email address is optional.
+  </p>
+
+  <p>
+    I will never use your data for anything beyond the functionality of the
+    site. Your name will be displayed publicly in your profile if you choose
+    to provide it, so that you can receive credit for your contributions. Your
+    email address will be used to recover access to your account if you forget
+    your password. I won't use either of these things for anything else without
+    asking you first. I may add more mailing features to guitab in the future,
+    but I will never subscribe you to any mail unless you explicitly ask to be
+    subscribed.
+  </p>
+
+  <p>
+    Donation pages use Stripe. I don't control what information they collect
+    about you, and I don't store it. See
+    <a href="https://stripe.com/us/privacy">their privacy policy</a> to find
+    out what information they collect. If you would like to make a donation
+    via a different method which fits your privacy needs better,
+    <a href="{% url 'contact:contact' %}">contact me</a> and we can probably
+    work something out.
+  </p>
+
+  <p>
+    I promise to do my best to protect what little sensitive data I actually do
+    collect and store from hackers. Passwords are stored using PBKDF2. Requests
+    are served over TLS. In general I'll try to keep up with modern security
+    practices and implement them appropriately on the site.
+  </p>
+
+  <p>
+    I promise to do make a reasonable effort to protect your data from illegal
+    government seizures of data. Data is stored in the US and is subject to US
+    law. I won't turn any data over to the government without a warrant. I
+    reserve the right to decide whether I go to court to defend your data if
+    someone comes to me with a warrant. In general, I'll fight any attempt to
+    collect the data of all guitab users, but if law enforcement comes to me
+    with a warrant for the data of a specific user who is accused of a crime,
+    I will provide them that user's data without argument. I will do my best to
+    keep users informed of any warrants I am served with relation to guitab
+    user data.
+  </p>
+
+  <p>
+    I will comply with mandatory reporting guidelines for the US and my
+    local laws. I will not go to jail or risk my life to protect your data.
+    I believe privacy is a human right, but the primary functionality of this
+    site is creating guitar tabs and posting them publicly--I'm not running a
+    high-security communications service. Please act accordingly.
+  </p>
+{% endblock %}
