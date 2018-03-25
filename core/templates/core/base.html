@@ -60,7 +60,16 @@
     </main>
 
     <footer id='site-footer'>
-      &copy; {% now 'Y' %} David Kerkeslager
+      <span>&copy; {% now 'Y' %} David Kerkeslager</span>
+
+      <nav>
+        <span>
+          {% if page == 'contact' %}
+          Contact
+          {% else %}
+          <a href="{% url 'contact:contact' %}">Contact</a>
+          {% endif %}
+        </span>
     </footer>
   </body>
 </html>
