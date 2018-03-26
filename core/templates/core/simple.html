@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+
+{% block body %}
+  <header id='main-header'>
+    <h2>{% block title %}{% endblock %}</h2>
+    <nav>
+      {% block page_nav %}
+      {% endblock %}
+    </nav>
+  </header>
+
+  {% block content %}
+  {% endblock %}
+{% endblock %}
