@@ -1,10 +1,12 @@
+import os.path
+
 from django.core.exceptions import PermissionDenied
 from django.forms.models import model_to_dict
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
-from . import forms, models
+from . import forms, models, rendering
 from core import util
 
 def index(request):
@@ -83,7 +85,9 @@ def artist_index(request):
 
 def detail(request, tab_id):
     tab = get_object_or_404(models.Tab, pk=tab_id)
-    context = { 'tab': tab }
+    context = {
+        'tab': tab
+    }
     return render(request, 'tabs/detail.html', context)
 
 def create(request):
@@ -132,3 +136,16 @@ def edit(request, tab_id):
         if tab_form.is_valid():
             tab = tab_form.save()
             return HttpResponseRedirect(reverse('tabs:detail', args=(tab.pk,)))
+
+def example(request):
+    # TODO Cache this
+    with open(os.path.join(os.path.dirname(__file__), 'static/example.txt'), 'r') as f:
+        raw = f.read()
+
+    rendered = rendering.render(raw)
+
+    context = {
+        'raw': raw,
+        'rendered': rendered,
+    }
+    return render(request, 'tabs/example.html', context)

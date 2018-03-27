@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import deletion
 
+from . import rendering
+
 class Artist(models.Model):
     user = models.ForeignKey(User, on_delete=deletion.PROTECT)
     name = models.CharField(max_length=256, unique=True, null=False, blank=False)
@@ -53,3 +55,6 @@ class Tab(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_rendered_tab(self):
+        return rendering.render(self.body)

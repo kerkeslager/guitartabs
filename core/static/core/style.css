@@ -143,3 +143,17 @@ footer#site-footer {
     flex-direction: column;
   }
 }
+
+section.raw-tab {
+  font-size: 10pt;
+  white-space: pre;
+}
+
+section.rendered-tab {
+  font-size: 10pt;
+  white-space: pre;
+}
+
+.hidden {
+  display: none;
+}

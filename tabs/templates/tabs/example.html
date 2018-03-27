@@ -1,0 +1,49 @@
+{% extends 'core/standard.html' %}
+
+{% block title %}Example tab{% endblock %}
+
+{% block page_nav %}
+  <script type='text/javascript'>
+    // <!--
+    function setShown(shown) {
+      var rendered = ['rendered-unlink', 'raw-link', 'rendered-tab'];
+      var raw = ['raw-unlink', 'rendered-link', 'raw-tab'];
+
+      if(shown == 'rendered') {
+        var toShow = rendered;
+        var toHide = raw;
+      }
+      if(shown == 'raw') {
+        var toShow = raw;
+        var toHide = rendered;
+      }
+
+      toShow.forEach(function(i) {
+        document.getElementById(i).classList.remove('hidden');
+      });
+
+      toHide.forEach(function(i) {
+        document.getElementById(i).classList.add('hidden');
+      });
+    }
+    // -->
+  </script>
+
+  <span>
+    <a id='rendered-link' class='hidden' href='javascript:setShown("rendered")'>Rendered</a>
+    <span id='rendered-unlink'>Rendered</span>
+  </span>
+  <span>
+    <a id='raw-link' href='javascript:setShown("raw")'>Raw</a>
+    <span id='raw-unlink' class='hidden'>Raw</span>
+  </span>
+{% endblock %}
+
+{% block content %}
+  <div id='example-splitpanel'>
+
+    <section id='rendered-tab' class='rendered-tab'>{{ rendered }}</section>
+
+    <section id='raw-tab' class='raw-tab hidden'>{{ raw }}</section>
+  </div>
+{% endblock %}

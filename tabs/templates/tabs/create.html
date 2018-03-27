@@ -1,12 +1,12 @@
-{% extends 'core/base.html' %}
+{% extends 'core/standard.html' %}
 
-{% block title %}Create new tab{% endblock %}
+{% block title %}Creating tab{% endblock %}
 
-{% block body %}
-  <header id='main-header'>
-    <h2>Creating tab</h2>
-  </header>
+{% block page_nav %}
+  <span><a href="{% url 'tabs:example' %}">Example</a></span>
+{% endblock %}
 
+{% block content %}
   <form action="{% url 'tabs:create' %}" method='post'>
     {% csrf_token %}
     {{ tab_form }}
