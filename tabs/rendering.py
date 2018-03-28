@@ -43,12 +43,36 @@ def whitespace_row_parser(index, lines):
 
 RHYTHM_LINE_MATCHER = re.compile(r'R(\s*[WHQEST]\.?)*\s*').fullmatch
 def rhythm_parser(index, lines):
-    return False, index, None
+    failure = (False, index, None)
+
+    match = RHYTHM_LINE_MATCHER(lines[index])
+
+    if match:
+        return True, index + 1, lines[index]
+
+    return failure
 
 TABULATURE_LINE_MATCHER = re.compile(r'([A-Ga-g][b#]?)\s*\|(-*\d+)*-*').fullmatch
 def tabulature_parser(index, lines):
     failure = (False, index, None)
-    return failure
+
+    tabulature_lines = []
+
+    match = TABULATURE_LINE_MATCHER(lines[index])
+
+    while match:
+        tabulature_lines.append(lines[index])
+        index += 1
+
+        if index == len(lines):
+            break
+
+        match = TABULATURE_LINE_MATCHER(lines[index])
+
+    if len(tabulature_lines) == 0:
+        return failure
+
+    return True, index, tuple(tabulature_lines)
 
 CHORDS_LINE_MATCHER = re.compile(r'CH(\s*[A-G][b#]?(add|dim|maj|min|sus)?(\d)?)*').fullmatch
 def chords_parser(index, lines):
@@ -62,7 +86,7 @@ def lyrics_parser(index, lines):
     lyrics_lines = []
 
     match = LYRICS_MATCHER(lines[index])
-    while match:
+    while match and lines[index].strip() != '':
         lyrics_lines.append(lines[index])
         index += 1
 

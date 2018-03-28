@@ -1,9 +1,16 @@
 {% for row in tab.rows %}
-Rhythm: {{ row.rhythm }}
-Tabula: {{ row.tabulature }}
-Chords: {{ row.chords }}
-
-{% for lyric in row.lyrics %}
-Lyrics: {{ lyric }}
-{% endfor %}
+<section class='row'>
+  {% if row.rhythm %}
+  <section class='rhythm line'>Rhythm: {{ row.rhythm }}</section>
+  {% endif %}
+  {% for tabulature in row.tabulature %}
+  <section class='tabulature line'>Tabula: {{ tabulature }}</section>
+  {% endfor %}
+  {% if row.chords %}
+  <section class='chords line'>Chords: {{ row.chords }}</section>
+  {% endif %}
+  {% for lyric in row.lyrics %}
+  <section class='lyrics line'>Lyrics: {{ lyric }}</section>
+  {% endfor %}
+</section>
 {% endfor %}
