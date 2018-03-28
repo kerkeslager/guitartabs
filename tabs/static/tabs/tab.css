@@ -29,6 +29,12 @@ section.rendered-tab .rhythm.line {
   align-items: center;
 }
 
-section.rendered-tab .rhythm.line .note {
+section.rendered-tab .rhythm.line .prespace {
   white-space: pre;
+}
+
+section.rendered-tab .rhythm.line .note {
+  width: 8px;
+  margin: 0;
+  padding: 0;
 }

@@ -1,9 +1,37 @@
+{% load static %}
+
 {% for row in tab.rows %}
 <section class='row'>
   {% if row.rhythm %}
   <section class='rhythm line'>
     {% for note in row.rhythm %}
-    <section class='note'>{{ note.prespace }}{{ note.note }}{% if note.dotted %}.{% endif %}</section>
+    <section class='prespace'>{{ note.prespace }}</section>
+    <section class='note'>
+      {% if tab.note == 'W' %}
+      <svg viewBox='0 0 80 160' style='width: 8px; height: 16px;'>
+        <ellipse cx='40' cy='130' rx='36' ry='22.25'/>
+        <ellipse cx='40' cy='130' rx='18' ry='11.12' fill='white' transform="rotate(60, 40, 120)"/>
+      </svg>
+      {% elif tab.note == 'H' %}
+      <svg viewBox='0 0 80 160' style='width: 8px; height: 16px;'>
+        <ellipse cx='40' cy='130' rx='36' ry='22.25' transform="rotate(150, 40, 130)"/>
+        <ellipse cx='40' cy='130' rx='24' ry='14.83' fill='white' transform="rotate(120, 40, 130)"/>
+        <line x1='70' y1='0' x2='70' y2='120' style='stroke:rgb(0,0,0); stroke-width:6;'/>
+      </svg>
+      {% elif tab.note == 'E' %}
+      <svg viewBox='0 0 80 160' style='width: 8px; height: 16px;'>
+        <ellipse cx='40' cy='130' rx='36' ry='22.25' transform="rotate(150, 40, 130)"/>
+        <line x1='70' y1='0' x2='70' y2='120' style='stroke:rgb(0,0,0); stroke-width:6;'/>
+      </svg>
+      {% else %}
+      <svg viewBox='0 0 120 240' style='width: 8px; height: 16px;'>
+        <ellipse cx='40' cy='130' rx='36' ry='22.25' transform="rotate(150, 40, 130)"/>
+        <line x1='70' y1='0' x2='70' y2='120' style='stroke:rgb(0,0,0); stroke-width:6;'/>
+        <path d='M70,0 C80,20 100,30 100, 50' style='stroke:rgb(0,0,0); stroke-width:3;'/>
+      </svg>
+      {% endif %}
+    </section>
+    <section class='dotting'>{% if note.dotted %}.{% endif %}</section>
     {% endfor %}
   </section>
   {% endif %}
