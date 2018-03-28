@@ -41,14 +41,32 @@ def whitespace_row_parser(index, lines):
 
     return failure
 
+RhythmNote = collections.namedtuple(
+    'RhythmNote',
+    (
+        'prespace',
+        'note',
+        'dotted',
+    ),
+)
+
 RHYTHM_LINE_MATCHER = re.compile(r'R(\s*[WHQEST]\.?)*\s*').fullmatch
+RHYTHM_NOTE_MATCHER = re.compile(r'(R?\s*)([WHQEST])(\.?)').finditer
 def rhythm_parser(index, lines):
     failure = (False, index, None)
 
     match = RHYTHM_LINE_MATCHER(lines[index])
 
     if match:
-        return True, index + 1, lines[index]
+        notes = []
+        for match in RHYTHM_NOTE_MATCHER(lines[index]):
+            notes.append(RhythmNote(
+                prespace=len(match.group(1)) * ' ',
+                note=match.group(2),
+                dotted=len(match.group(3)) > 0,
+            ))
+
+        return True, index + 1, notes
 
     return failure
 
