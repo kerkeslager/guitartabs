@@ -1,0 +1,9 @@
+{% for row in tab.rows %}
+Rhythm: {{ row.rhythm }}
+Tabula: {{ row.tabulature }}
+Chords: {{ row.chords }}
+
+{% for lyric in row.lyrics %}
+Lyrics: {{ lyric }}
+{% endfor %}
+{% endfor %}

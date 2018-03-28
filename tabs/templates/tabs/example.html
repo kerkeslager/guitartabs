@@ -42,7 +42,7 @@
 {% block content %}
   <div id='example-splitpanel'>
 
-    <section id='rendered-tab' class='rendered-tab'>{{ rendered }}</section>
+    <section id='rendered-tab' class='rendered-tab'>{% include 'tabs/tab.html' with tab=rendered %}</section>
 
     <section id='raw-tab' class='raw-tab hidden'>{{ raw }}</section>
   </div>
