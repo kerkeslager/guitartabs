@@ -24,8 +24,18 @@
     {% endfor %}
   </section>
   {% endif %}
-  {% for tabulature in row.tabulature %}
-  <section class='tabulature line'>{{ tabulature }}</section>
+  {% for string in row.tabulature.strings %}
+  <section class='tabulature line'>
+    <section class='tuning'>{{ string.tuning }}</section>
+    <section class='bar'>|</section>
+    <svg height="16" width="{{ string.length }}" viewBox='0 0 {{ string.length }} 16'>
+      <line x1='0' x2='{{ string.length }}' y1='10' y2='10' style='stroke:rgb(0,0,0); stroke-width: 1;' />
+      {% for note in string.notes %}
+      <rect width='{{ note.width }}' height='16' x='{{ note.offset }}' y='0' style='fill:white; stroke-width:0;' />
+      <text x='{{ note.offset }}' y='14' font-family='Roboto Mono' font-size='10pt' text-anchor='start'>{{ note.fret }}</text>
+      {% endfor %}
+    </svg>
+  </section>
   {% endfor %}
   {% if row.chords %}
   <section class='chords line'>{{ row.chords }}</section>

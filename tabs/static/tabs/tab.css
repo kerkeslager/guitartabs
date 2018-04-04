@@ -15,7 +15,6 @@ section.rendered-tab .row {
   margin: 0 25px 25px 0;
 }
 
-section.rendered-tab .tabulature.line,
 section.rendered-tab .chords.line,
 section.rendered-tab .lyrics.line {
   white-space: pre;
@@ -41,4 +40,12 @@ section.rendered-tab .rhythm.line .note {
 
 section.rendered-tab .rhythm.line .note img {
   width: 8px;
+}
+
+section.rendered-tab .tabulature.line {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }

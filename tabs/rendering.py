@@ -16,6 +16,24 @@ Tabulature = collections.namedtuple(
     ),
 )
 
+TabulatureString = collections.namedtuple(
+    'TabulatureString',
+    (
+        'length',
+        'tuning',
+        'notes',
+    ),
+)
+
+TabulatureStringNote = collections.namedtuple(
+    'TabulatureStringNote',
+    (
+        'offset',
+        'width',
+        'fret',
+    ),
+)
+
 Row = collections.namedtuple(
     'Row',
     (
@@ -71,6 +89,7 @@ def rhythm_parser(index, lines):
     return failure
 
 TABULATURE_LINE_MATCHER = re.compile(r'([A-Ga-g][b#]?)\s*\|(-*\d+)*-*').fullmatch
+TABULATURE_NOTE_MATCHER = re.compile(r'\d+').finditer
 def tabulature_parser(index, lines):
     failure = (False, index, None)
 
@@ -79,7 +98,18 @@ def tabulature_parser(index, lines):
     match = TABULATURE_LINE_MATCHER(lines[index])
 
     while match:
-        tabulature_lines.append(lines[index])
+        notes = tuple(
+            TabulatureStringNote(
+                offset=(m.start() - 2) * 8,
+                width=len(m.group()) * 8,
+                fret=int(m.group()),
+            ) for m in TABULATURE_NOTE_MATCHER(lines[index])
+        )
+        tabulature_lines.append(TabulatureString(
+            length=(len(lines[index]) - len(match.group(1)) - 1) * 8,
+            tuning=match.group(1),
+            notes=notes,
+        ))
         index += 1
 
         if index == len(lines):
@@ -90,7 +120,9 @@ def tabulature_parser(index, lines):
     if len(tabulature_lines) == 0:
         return failure
 
-    return True, index, tuple(tabulature_lines)
+    return True, index, Tabulature(
+        strings=tuple(tabulature_lines),
+    )
 
 CHORDS_LINE_MATCHER = re.compile(r'CH(\s*[A-G][b#]?(add|dim|maj|min|sus)?(\d)?)*').fullmatch
 def chords_parser(index, lines):
