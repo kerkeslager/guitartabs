@@ -38,3 +38,7 @@ section.rendered-tab .rhythm.line .note {
   margin: 0;
   padding: 0;
 }
+
+section.rendered-tab .rhythm.line .note img {
+  width: 8px;
+}
