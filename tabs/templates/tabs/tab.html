@@ -18,16 +18,17 @@
         <ellipse cx='40' cy='130' rx='24' ry='14.83' fill='white' transform="rotate(120, 40, 130)"/>
         <line x1='70' y1='0' x2='70' y2='120' style='stroke:rgb(0,0,0); stroke-width:6;'/>
       </svg>
-      {% elif tab.note == 'E' %}
+      {% elif tab.note == 'Q' %}
       <svg viewBox='0 0 80 160' style='width: 8px; height: 16px;'>
         <ellipse cx='40' cy='130' rx='36' ry='22.25' transform="rotate(150, 40, 130)"/>
         <line x1='70' y1='0' x2='70' y2='120' style='stroke:rgb(0,0,0); stroke-width:6;'/>
       </svg>
-      {% else %}
+      {% elif tab.note == 'E' %}
       <svg viewBox='0 0 120 240' style='width: 8px; height: 16px;'>
         <ellipse cx='40' cy='130' rx='36' ry='22.25' transform="rotate(150, 40, 130)"/>
         <line x1='70' y1='0' x2='70' y2='120' style='stroke:rgb(0,0,0); stroke-width:6;'/>
-        <path d='M70,0 C80,20 100,30 100, 50' style='stroke:rgb(0,0,0); stroke-width:3;'/>
+        <path d='M70,0 Q110,0 110,40' fill='rgba(0,0,0,0)' style='stroke:rgb(0,0,0); stroke-width:6;'/>
+        "M100,30 C114,118 242,28 237,239
       </svg>
       {% endif %}
     </section>
